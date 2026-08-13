@@ -1,0 +1,26 @@
+name: GRC Repository Quality
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * 1"
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate
+        shell: bash
+        run: |
+          test -f README.md
+          test -f SYLLABUS.md
+          test "$(find days -name lesson.md | wc -l)" -eq 30
+          test "$(find labs -name README.md | wc -l)" -eq 30
+          test "$(find assessments/quizzes -name '*.md' | wc -l)" -eq 30
+          echo "Lessons: $(find days -name lesson.md | wc -l)"
+          echo "Labs: $(find labs -name README.md | wc -l)"
+          echo "Framework packages: $(find frameworks -mindepth 1 -maxdepth 1 -type d | wc -l)"
+          echo "Templates: $(find templates -type f | wc -l)"

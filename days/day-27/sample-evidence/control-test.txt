@@ -1,0 +1,8 @@
+CONTROL TEST — DAY 27
+Control: Synthetic training control
+Period: Current classroom exercise
+Population: 10 synthetic records
+Sample: 3
+Result: 2 compliant / 1 exception
+Conclusion: Partially effective
+Finding: One exception lacked timely remediation evidence.
